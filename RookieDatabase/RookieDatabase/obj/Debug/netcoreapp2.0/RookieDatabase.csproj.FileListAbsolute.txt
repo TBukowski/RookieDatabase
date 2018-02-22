@@ -1,0 +1,10 @@
+C:\Users\Ty\Desktop\RookieDatabase\RookieDatabase\RookieDatabase\bin\Debug\netcoreapp2.0\RookieDatabase.deps.json
+C:\Users\Ty\Desktop\RookieDatabase\RookieDatabase\RookieDatabase\bin\Debug\netcoreapp2.0\RookieDatabase.runtimeconfig.json
+C:\Users\Ty\Desktop\RookieDatabase\RookieDatabase\RookieDatabase\bin\Debug\netcoreapp2.0\RookieDatabase.runtimeconfig.dev.json
+C:\Users\Ty\Desktop\RookieDatabase\RookieDatabase\RookieDatabase\bin\Debug\netcoreapp2.0\RookieDatabase.dll
+C:\Users\Ty\Desktop\RookieDatabase\RookieDatabase\RookieDatabase\obj\Debug\netcoreapp2.0\RookieDatabase.csproj.CoreCompileInputs.cache
+C:\Users\Ty\Desktop\RookieDatabase\RookieDatabase\RookieDatabase\obj\Debug\netcoreapp2.0\RookieDatabase.AssemblyInfoInputs.cache
+C:\Users\Ty\Desktop\RookieDatabase\RookieDatabase\RookieDatabase\obj\Debug\netcoreapp2.0\RookieDatabase.AssemblyInfo.cs
+C:\Users\Ty\Desktop\RookieDatabase\RookieDatabase\RookieDatabase\bin\Debug\netcoreapp2.0\RookieDatabase.pdb
+C:\Users\Ty\Desktop\RookieDatabase\RookieDatabase\RookieDatabase\obj\Debug\netcoreapp2.0\RookieDatabase.dll
+C:\Users\Ty\Desktop\RookieDatabase\RookieDatabase\RookieDatabase\obj\Debug\netcoreapp2.0\RookieDatabase.pdb
