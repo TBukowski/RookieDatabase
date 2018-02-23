@@ -14,6 +14,5 @@ namespace RookieDatabase.Data
             //}
         }
         public DbSet<Player> Player { get; set; }
-        public DbSet<RookieDatabase.ViewModels.RookieViewModel> RookieViewModel { get; set; }
     }
 }

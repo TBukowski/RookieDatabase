@@ -5,6 +5,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using RookieDatabase.Data;
+using RookieDatabase.Helpers;
 using RookieDatabase.Models;
 using RookieDatabase.ViewModels;
 
@@ -18,97 +19,21 @@ namespace RookieDatabase.Controllers
         {
             _context = context;
         }
+        
         public IActionResult Index()
         {
 
             return View();
         }
 
-        public IActionResult QB()
+        //CREATE A POSITION TABLE VIEW - POSITION TITLE, TABLE W/ PLAYERS, 
+        //PLAYER NAMES LINK TO PLAYER EDIT VIEW, PLAYER SEARCH
+        public IActionResult Position(string position)
         {
-            ViewData["Message"] = "Your QB page.";
-
-            return View();
+            return View(position);
         }
 
-        public IActionResult HB()
-        {
-            ViewData["Message"] = "Your HB page.";
-
-            return View();
-        }
-
-        public IActionResult FB()
-        {
-            ViewData["Message"] = "Your FB page.";
-
-            return View();
-        }
-
-        public IActionResult WR()
-        {
-            ViewData["Message"] = "Your WR page.";
-
-            return View();
-        }
-
-        public IActionResult TE()
-        {
-            ViewData["Message"] = "Your TE page.";
-
-            return View();
-        }
-
-        public IActionResult OL()
-        {
-            ViewData["Message"] = "Your OL page.";
-
-            return View();
-        }
-
-        public IActionResult DE()
-        {
-            ViewData["Message"] = "Your DE page.";
-
-            return View();
-        }
-
-        public IActionResult DT()
-        {
-            ViewData["Message"] = "Your DT page.";
-
-            return View();
-        }
-
-        public IActionResult LB()
-        {
-            ViewData["Message"] = "Your LB page.";
-
-            return View();
-        }
-
-        public IActionResult CB()
-        {
-            ViewData["Message"] = "Your CB page.";
-
-            return View();
-        }
-
-        public IActionResult FS()
-        {
-            ViewData["Message"] = "Your FS page.";
-
-            return View();
-        }
-
-        public IActionResult SS()
-        {
-            ViewData["Message"] = "Your SS page.";
-
-            return View();
-        }
-
-        //[HttpPost("AddPlayer")]
+        [HttpPost("AddPlayer")]
         public IActionResult AddPlayer(CreateViewModel player)
         {
             if (_context.Player.Any(p => p.PlayerName == player.PlayerName))
@@ -121,7 +46,7 @@ namespace RookieDatabase.Controllers
 
             if (ModelState.IsValid)
             {
-                Player toCreate = new Player()
+                var toCreate = new Player
                 {
                     PlayerName = player.PlayerName,
                     Position = player.Position,
@@ -196,6 +121,11 @@ namespace RookieDatabase.Controllers
             ViewData["Message"] = "Your contact page.";
 
             return View();
+        }
+
+        private string GetPageMessage(Enums.Enums.PositionValue pageName)
+        {
+            return $"Your {pageName.GetDescription()} page";
         }
 
         public IActionResult Error()
