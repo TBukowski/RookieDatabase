@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using RookieDatabase.Models;
+using static RookieDatabase.Enums.Enums;
 
 namespace RookieDatabase.ViewModels
 {
@@ -11,6 +12,7 @@ namespace RookieDatabase.ViewModels
         public int ID { get; set; }
         public string PlayerName { get; set; }
         public string Position { get; set; }
+        //public PositionValue PositionValue { get; set; }
         public int Age { get; set; }
         public int Height { get; set; }
         public int Weight { get; set; }
@@ -52,6 +54,10 @@ namespace RookieDatabase.ViewModels
         public int PRS { get; set; }
         public int PRC { get; set; }
         public int PUR { get; set; }
+    //-------------------------------------------------------------------------------------------------
+    //the code here is similar to line 42 in my homecontroller. Not sure where to put it or how to label it
+    //-------------------------------------------------------------------------------------------------
+        public object Positions = Enum.GetValues(typeof(PositionValue)).Cast<PositionValue>();
         //public Player Player { get; set; }
         //public ICollection<Player> Rookies { get; set;}
     }

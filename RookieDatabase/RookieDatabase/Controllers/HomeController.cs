@@ -8,6 +8,7 @@ using RookieDatabase.Data;
 using RookieDatabase.Helpers;
 using RookieDatabase.Models;
 using RookieDatabase.ViewModels;
+using static RookieDatabase.Enums.Enums;
 
 namespace RookieDatabase.Controllers
 {
@@ -28,13 +29,33 @@ namespace RookieDatabase.Controllers
 
         //CREATE A POSITION TABLE VIEW - POSITION TITLE, TABLE W/ PLAYERS, 
         //PLAYER NAMES LINK TO PLAYER EDIT VIEW, PLAYER SEARCH
+        [Route("Home/Position")]
         public IActionResult Position(string position)
         {
-            return View(position);
+            //---------------------------------------------------------------------
+            //assuming i misread, but i put the code on line 42 here and RookieVM
+            //Need a list/collection/whatever the right one is grouping the rookies
+            //by position
+            //---------------------------------------------------------------------
+            var vm = new RookieViewModel
+            {               
+                Positions = Enum.GetValues(typeof(PositionValue)).Cast<PositionValue>()
+            };
+            return View(vm);
+        }
+
+        private string GetPageMessage(Enums.Enums.PositionValue pageName)
+        {
+            return $"Your {pageName.GetDescription()} page";
+        }
+
+        public IActionResult AddPlayer()
+        {
+            return View();
         }
 
         [HttpPost("AddPlayer")]
-        public IActionResult AddPlayer(CreateViewModel player)
+        public IActionResult CreatePlayer(CreateViewModel player)
         {
             if (_context.Player.Any(p => p.PlayerName == player.PlayerName))
             {
@@ -99,7 +120,7 @@ namespace RookieDatabase.Controllers
                 return RedirectToAction("AddPlayer");
                 //return Json(toCreate);
             }
-            return View("Index");
+            return View("AddPlayer");
         }
 
         public IActionResult About()
@@ -123,10 +144,6 @@ namespace RookieDatabase.Controllers
             return View();
         }
 
-        private string GetPageMessage(Enums.Enums.PositionValue pageName)
-        {
-            return $"Your {pageName.GetDescription()} page";
-        }
 
         public IActionResult Error()
         {
