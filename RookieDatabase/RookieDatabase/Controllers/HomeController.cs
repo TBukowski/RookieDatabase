@@ -23,13 +23,18 @@ namespace RookieDatabase.Controllers
         
         public IActionResult Index()
         {
-
-            return View();
+            var positions = RookieViewModel.Positions;
+            var rookie = new RookieViewModel
+            {
+                positions = Enum.GetValues(typeof(PositionValue)).Cast<PositionValue>();
+            }
+            return View(rookie);
         }
 
         //CREATE A POSITION TABLE VIEW - POSITION TITLE, TABLE W/ PLAYERS, 
         //PLAYER NAMES LINK TO PLAYER EDIT VIEW, PLAYER SEARCH
-        [Route("Home/Position")]
+
+        //[Route("Home/Position")] --Do not need if action is named correctly
         public IActionResult Position(string position)
         {
             //---------------------------------------------------------------------
@@ -39,7 +44,7 @@ namespace RookieDatabase.Controllers
             //---------------------------------------------------------------------
             var vm = new RookieViewModel
             {               
-                Positions = Enum.GetValues(typeof(PositionValue)).Cast<PositionValue>()
+                //Positions = Enum.GetValues(typeof(PositionValue)).Cast<PositionValue>()
             };
             return View(vm);
         }
@@ -55,14 +60,11 @@ namespace RookieDatabase.Controllers
         }
 
         [HttpPost("AddPlayer")]
-        public IActionResult CreatePlayer(CreateViewModel player)
+        public IActionResult AddPlayer(CreateViewModel player)
         {
-            if (_context.Player.Any(p => p.PlayerName == player.PlayerName))
+            if (_context.Player.Any(p => p.PlayerName == player.PlayerName && p.Position == player.Position))
             {
-                if (_context.Player.Any(p => p.Position == player.Position))
-                {
-                    ModelState.AddModelError(nameof(Player.PlayerName), "Player name already exists");
-                } 
+                ModelState.AddModelError(nameof(Player.PlayerName), "Player name already exists");
             }
 
             if (ModelState.IsValid)
@@ -122,28 +124,6 @@ namespace RookieDatabase.Controllers
             }
             return View("AddPlayer");
         }
-
-        public IActionResult About()
-        {
-            ViewData["Message"] = "Your application description page.";
-            var Rookies = _context.Player.ToList();
-            var vm = new RookieViewModel()
-            {
-                //Rookies = Rookies.Select(r => new RookieViewModel
-                //{
-
-                //})
-            };
-            return View();
-        }
-
-        public IActionResult Contact()
-        {
-            ViewData["Message"] = "Your contact page.";
-
-            return View();
-        }
-
 
         public IActionResult Error()
         {

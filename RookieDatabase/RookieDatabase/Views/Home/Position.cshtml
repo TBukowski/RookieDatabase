@@ -11,7 +11,7 @@
     <a asp-action="AddPlayer">Add a new rookie</a>
 </p>
 
-@foreach (var rookie in vm)
+@foreach (var rookie in Model.Position)
 {
     <h2>@Model.Position</h2>
     <h2>@Model.PlayerName</h2>
@@ -23,7 +23,7 @@
     -i can do table on my own
 
     -This page will consist of a table resembling the roster view in the Madden game and
-    will only hold one position grouping.
+    will only hold one position grouping. (eadh position will have its own page)
     -A title with the position name
     -A search bar
     -Player name link to player specific edit

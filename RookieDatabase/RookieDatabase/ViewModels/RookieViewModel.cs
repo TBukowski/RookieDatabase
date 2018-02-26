@@ -54,10 +54,10 @@ namespace RookieDatabase.ViewModels
         public int PRS { get; set; }
         public int PRC { get; set; }
         public int PUR { get; set; }
-    //-------------------------------------------------------------------------------------------------
-    //the code here is similar to line 42 in my homecontroller. Not sure where to put it or how to label it
-    //-------------------------------------------------------------------------------------------------
-        public object Positions = Enum.GetValues(typeof(PositionValue)).Cast<PositionValue>();
+        //-------------------------------------------------------------------------------------------------
+        //the code here is similar to line 42 in my homecontroller. Not sure where to put it or how to label it
+        //-------------------------------------------------------------------------------------------------
+        public enum Positions { get; set; }
         //public Player Player { get; set; }
         //public ICollection<Player> Rookies { get; set;}
     }

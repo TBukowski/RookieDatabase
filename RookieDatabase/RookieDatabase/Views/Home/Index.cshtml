@@ -5,37 +5,40 @@
 
 <h1>ROOKIE DATABASE</h1>
 @*<div class="form-group">
-    @Html.LabelFor(model => model.PositionValue, new { @class = "control-label col-md-2" })
-    <div class="col-md-10">
-        @Html.EditorFor(model => model.PositionValue)
-        @Html.ValidationMessageFor(model => model.PositionValue)
-    </div>
-</div>*@
+        @Html.LabelFor(model => model.PositionValue, new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.PositionValue)
+            @Html.ValidationMessageFor(model => model.PositionValue)
+        </div>
+    </div>*@
+@foreach (for rookie in Model.Positions)
+        <a asp-action="@Model.Position"
+           asp-route-position="@Model.Position">@Model.Position</a>
 <div>
     <a asp-action="Position"
-        asp-route-position="QB">QB</a>
+       asp-route-position="QB">QB</a>
     <a asp-action="Position"
-        asp-route-position="HB">HB</a>
+       asp-route-position="HB">HB</a>
     <a asp-action="Position"
-        asp-route-position="FB">FB</a>
+       asp-route-position="FB">FB</a>
     <a asp-action="Position"
-        asp-route-position="WR">WR</a>
+       asp-route-position="WR">WR</a>
     <a asp-action="Position"
-        asp-route-position="TE">TE</a>
+       asp-route-position="TE">TE</a>
     <a asp-action="Position"
-        asp-route-position="OL">OL</a>
+       asp-route-position="OL">OL</a>
     <a asp-action="Position"
-        asp-route-position="DE">DE</a>
+       asp-route-position="DE">DE</a>
     <a asp-action="Position"
-        asp-route-position="DT">DT</a>
+       asp-route-position="DT">DT</a>
     <a asp-action="Position"
-        asp-route-position="LB">LB</a>
+       asp-route-position="LB">LB</a>
     <a asp-action="Position"
-        asp-route-position="CB">CB</a>
+       asp-route-position="CB">CB</a>
     <a asp-action="Position"
-        asp-route-position="FS">FS</a>
+       asp-route-position="FS">FS</a>
     <a asp-action="Position"
-        asp-route-position="SS">SS</a>
+       asp-route-position="SS">SS</a>
 </div>
 <div>
     <a asp-action="AddPlayer">Add a Rookie</a>
