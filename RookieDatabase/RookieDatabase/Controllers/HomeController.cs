@@ -23,11 +23,12 @@ namespace RookieDatabase.Controllers
         
         public IActionResult Index()
         {
-            var positions = RookieViewModel.Positions;
             var rookie = new RookieViewModel
             {
-                positions = Enum.GetValues(typeof(PositionValue)).Cast<PositionValue>();
-            }
+                
+                Positions = Enum.GetValues(typeof(PositionValue)).Cast<PositionValue>()
+            };
+            
             return View(rookie);
         }
 
@@ -35,16 +36,53 @@ namespace RookieDatabase.Controllers
         //PLAYER NAMES LINK TO PLAYER EDIT VIEW, PLAYER SEARCH
 
         //[Route("Home/Position")] --Do not need if action is named correctly
-        public IActionResult Position(string position)
+        public IActionResult Position(RookieViewModel player)
         {
-            //---------------------------------------------------------------------
-            //assuming i misread, but i put the code on line 42 here and RookieVM
-            //Need a list/collection/whatever the right one is grouping the rookies
-            //by position
-            //---------------------------------------------------------------------
             var vm = new RookieViewModel
-            {               
-                //Positions = Enum.GetValues(typeof(PositionValue)).Cast<PositionValue>()
+            {
+                PlayerName = player.PlayerName,
+                Position = player.Position,
+                Age = player.Age,
+                Height = player.Height,
+                Weight = player.Weight,
+                Development = player.Development,
+                OVR = player.OVR,
+                SPD = player.SPD,
+                ACC = player.ACC,
+                STR = player.STR,
+                AGI = player.AGI,
+                ELU = player.ELU,
+                BCV = player.BCV,
+                CAR = player.CAR,
+                JKM = player.JKM,
+                SPM = player.SPM,
+                SFA = player.SFA,
+                TRK = player.TRK,
+                CTH = player.CTH,
+                CIT = player.CIT,
+                SPC = player.SPC,
+                RTE = player.RTE,
+                RLS = player.RLS,
+                JMP = player.JMP,
+                THP = player.THP,
+                SAC = player.SAC,
+                MAC = player.MAC,
+                DAC = player.DAC,
+                RUN = player.RUN,
+                PAC = player.PAC,
+                RBK = player.RBK,
+                PBK = player.PBK,
+                IBL = player.IBL,
+                TAK = player.TAK,
+                POW = player.POW,
+                BSH = player.BSH,
+                FMV = player.FMV,
+                PMV = player.PMV,
+                MCV = player.MCV,
+                ZCV = player.ZCV,
+                PRS = player.PRS,
+                PRC = player.PRC,
+                PUR = player.PUR
             };
             return View(vm);
         }
@@ -53,13 +91,13 @@ namespace RookieDatabase.Controllers
         {
             return $"Your {pageName.GetDescription()} page";
         }
-
+        [HttpGet]
         public IActionResult AddPlayer()
         {
             return View();
         }
 
-        [HttpPost("AddPlayer")]
+        [HttpPost]
         public IActionResult AddPlayer(CreateViewModel player)
         {
             if (_context.Player.Any(p => p.PlayerName == player.PlayerName && p.Position == player.Position))

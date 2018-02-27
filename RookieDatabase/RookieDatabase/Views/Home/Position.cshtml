@@ -10,22 +10,22 @@
 <p>
     <a asp-action="AddPlayer">Add a new rookie</a>
 </p>
+@*
+    @foreach (var rookie in )
+    {
+        <h2>@Model.Position</h2>
+        <h2>@Model.PlayerName</h2>
+    }
 
-@foreach (var rookie in Model.Position)
-{
-    <h2>@Model.Position</h2>
-    <h2>@Model.PlayerName</h2>
-}
-@* 
----------------------------------------------------------------------------------------------------    
-    -Line 14 is incorrect and needs an enumerable of position specific rookies
-    -Right now I want to just get the razor working and create the correct list (or whatever)
-    -i can do table on my own
+    ---------------------------------------------------------------------------------------------------
+        -Line 14 is incorrect and needs an enumerable of position specific rookies
+        -Right now I want to just get the razor working and create the correct list (or whatever)
+        -i can do table on my own
 
-    -This page will consist of a table resembling the roster view in the Madden game and
-    will only hold one position grouping. (eadh position will have its own page)
-    -A title with the position name
-    -A search bar
-    -Player name link to player specific edit
----------------------------------------------------------------------------------------------------
+        -This page will consist of a table resembling the roster view in the Madden game and
+        will only hold one position grouping. (eadh position will have its own page)
+        -A title with the position name
+        -A search bar
+        -Player name link to player specific edit
+    ---------------------------------------------------------------------------------------------------
 *@

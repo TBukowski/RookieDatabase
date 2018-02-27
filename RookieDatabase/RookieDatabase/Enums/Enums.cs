@@ -6,30 +6,30 @@ namespace RookieDatabase.Enums
     {
         public enum PositionValue
         {
-            [Description("Cornerback")]
-            CB,
+            [Description("Quarterback")]
+            QB,
+            [Description("Halfback")]
+            HB,
+            [Description("Fullback")]
+            FB,
+            [Description("Wide Receiver")]
+            WR,
+            [Description("Tight End")]
+            TE,
+            [Description("Offensive Lineman")]
+            OL,
             [Description("Defensive End")]
             DE,
             [Description("Defensive Tackle")]
             DT,
-            [Description("Fullback")]
-            FB,
-            [Description("Free Safety")]
-            FS,
-            [Description("Halfback")]
-            HB,
             [Description("Linebacker")]
             LB,
-            [Description("Offensive Lineman")]
-            OL,
-            [Description("Quarterback")]
-            QB,
+            [Description("Cornerback")]
+            CB,
+            [Description("Free Safety")]
+            FS,
             [Description("Strong Safety")]
-            SS,
-            [Description("Tight End")]
-            TE,
-            [Description("Wide Receiver")]
-            WR
+            SS
         }
     }
 }
