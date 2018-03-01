@@ -13,6 +13,7 @@ namespace RookieDatabase.Data
             //    throw new ArgumentNullException(nameof(options));
             //}
         }
+        //dbset needs to be plural
         public DbSet<Player> Player { get; set; }
     }
 }

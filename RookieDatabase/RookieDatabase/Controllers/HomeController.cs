@@ -24,8 +24,7 @@ namespace RookieDatabase.Controllers
         public IActionResult Index()
         {
             var rookie = new RookieViewModel
-            {
-                
+            {                
                 Positions = Enum.GetValues(typeof(PositionValue)).Cast<PositionValue>()
             };
             
@@ -38,6 +37,16 @@ namespace RookieDatabase.Controllers
         //[Route("Home/Position")] --Do not need if action is named correctly
         public IActionResult Position(string position)
         {
+            //the logic in this action doesn't make sense....
+            //this is supposed to be an action that represents a sub-group of players that play a certain position.
+            //you need to update the database call below to filter by the position being passed in...you don't want a qb showing up under RB
+            //just for future reference...it's not good to tolist and then select. you can get it from the context and select before tolisting.
+            //doing it the way that you did causes the code to have to loop through all of the players twice.
+            //it's better to do this => _context.Player.Select(r => whatever).tolist();
+            //another tip for readability...try to keep related blocks of code together instead of separated.
+            //you have var vm = new PositionViewModel();, but do not use it until way at the bottom
+            //where you have vm.Rookies = you could declare and set the property in one statement using var vm = new PositionViewModel { Rookies = rookies };
+            var vm = new PositionViewModel();
             var vm = new PositionViewModel();
             var rookieList = _context.Player.ToList();
             var rookies = rookieList.Select(r => new PositionDTO
@@ -87,14 +96,17 @@ namespace RookieDatabase.Controllers
                 PUR = r.PUR
             });
             vm.Rookies = rookies;
-
+            //make sure to update the view to use positionviewmodel
             return View(vm);
         }
 
+        //you can use this as to populate a vm prop to set the title on the individual position views
+        //try to group all of your public and private methods together for readability. try to avoid having public then private then public etc...
         private string GetPageMessage(Enums.Enums.PositionValue pageName)
         {
             return $"Your {pageName.GetDescription()} page";
         }
+
         [HttpGet]
         public IActionResult AddPlayer()
         {
@@ -106,6 +118,9 @@ namespace RookieDatabase.Controllers
         {
             if (_context.Player.Any(p => p.PlayerName == player.PlayerName && p.Position == player.Position))
             {
+                //Player name and position already exists
+                //since you're checking the combination of the two
+                //you can still use ivalidatableobject in the future when you get back to this
                 ModelState.AddModelError(nameof(Player.PlayerName), "Player name already exists");
             }
 
@@ -158,12 +173,19 @@ namespace RookieDatabase.Controllers
                     PUR = player.PUR
                 };
 
+                //it's usually a best practice to name your dbsets plural. Note: I mean dbset, not model. The model should be named Player, dbset: Players
+                _context.Player.Add(toCreate);
                 _context.Player.Add(toCreate);
                 _context.SaveChanges();
 
+
+                //idk why you used redirecttoaction, if there's a valid reason let me know.
+                //imo, this line isn't even needed
+                //redirecttoaction causes you to lose any modelstate validation errors. you just need to return the view
                 return RedirectToAction("AddPlayer");
                 //return Json(toCreate);
             }
+            //you do not need to specify the name of the view since your action is now named properly. return View();
             return View("AddPlayer");
         }
 

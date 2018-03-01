@@ -1,10 +1,16 @@
 ﻿@*@model IEnumerable<RookieDatabase.ViewModels.RookieViewModel>*@
 @model RookieDatabase.ViewModels.RookieViewModel
-
+@*
+    use positionviewmodel instead of rookieviewmodel
+    remember that helper method in the controller that I created called GetPageMessage
+    use that to set a new property on the view model which you can use to the set title.
+    the view will not know what position here...it will need to look into the view model*@
 @{
     ViewData["Title"] = "Position";
 }
 
+@*This type of property is what I was talking about in my comment above. This is pretty much what you need. Just one problem, you're trying to use it here
+    and it is not a property on position viewmodel*@
 <h1>@Model.Position</h1>
 <h2>POSITION PAGE</h2>
 <p>

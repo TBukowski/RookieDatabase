@@ -7,6 +7,7 @@ namespace RookieDatabase.ViewModels
 {
     public class PositionViewModel
     {
+        //add line for singular position for title of posistion page
         public IEnumerable<PositionDTO> Rookies { get; set; }
     }
 }
