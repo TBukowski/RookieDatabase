@@ -46,10 +46,11 @@ namespace RookieDatabase.Controllers
             //another tip for readability...try to keep related blocks of code together instead of separated.
             //you have var vm = new PositionViewModel();, but do not use it until way at the bottom
             //where you have vm.Rookies = you could declare and set the property in one statement using var vm = new PositionViewModel { Rookies = rookies };
-            var vm = new PositionViewModel();
-            var vm = new PositionViewModel();
-            var rookieList = _context.Player.ToList();
-            var rookies = rookieList.Select(r => new PositionDTO
+
+            //SELECT ALL ROOKIES WHERE POSITION EQUAL THE PARAMETER POSITION
+            //var rookies = rookieList.Select(r => new PositionDTO
+
+            var rookieList = _context.Players.Select(r => r.Position == position).ToList();
             {
                 PlayerName = r.PlayerName,
                 Position = r.Position,
@@ -95,7 +96,11 @@ namespace RookieDatabase.Controllers
                 PRC = r.PRC,
                 PUR = r.PUR
             });
-            vm.Rookies = rookies;
+            var vm = new PositionViewModel { Rookies = rookieList };
+            //Takes the place of -> var vm = new PositionViewModel();
+            //-> vm.Rookies = rookies;
+
+
             //make sure to update the view to use positionviewmodel
             return View(vm);
         }
@@ -116,7 +121,7 @@ namespace RookieDatabase.Controllers
         [HttpPost]
         public IActionResult AddPlayer(CreateViewModel player)
         {
-            if (_context.Player.Any(p => p.PlayerName == player.PlayerName && p.Position == player.Position))
+            if (_context.Players.Any(p => p.PlayerName == player.PlayerName && p.Position == player.Position))
             {
                 //Player name and position already exists
                 //since you're checking the combination of the two
@@ -174,8 +179,8 @@ namespace RookieDatabase.Controllers
                 };
 
                 //it's usually a best practice to name your dbsets plural. Note: I mean dbset, not model. The model should be named Player, dbset: Players
-                _context.Player.Add(toCreate);
-                _context.Player.Add(toCreate);
+                _context.Players.Add(toCreate);
+                _context.Players.Add(toCreate);
                 _context.SaveChanges();
 
 

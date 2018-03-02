@@ -97,8 +97,6 @@ namespace RookieDatabase.ViewModels
         public int PRC { get; set; }
         [Range(0,99)]
         public int PUR { get; set; }
-        //public Player Player { get; set; }
-        //public ICollection<Player> Rookies { get; set;}
     }
 }
 
