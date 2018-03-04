@@ -48,61 +48,61 @@ namespace RookieDatabase.Controllers
             //where you have vm.Rookies = you could declare and set the property in one statement using var vm = new PositionViewModel { Rookies = rookies };
 
             //SELECT ALL ROOKIES WHERE POSITION EQUAL THE PARAMETER POSITION
-            //var rookies = rookieList.Select(r => new PositionDTO
-
-            var rookieList = _context.Players.Select(r => r.Position == position).ToList();
-            {
-                PlayerName = r.PlayerName,
-                Position = r.Position,
-                Age = r.Age,
-                Height = r.Height,
-                Weight = r.Weight,
-                Development = r.Development,
-                OVR = r.OVR,
-                SPD = r.SPD,
-                ACC = r.ACC,
-                STR = r.STR,
-                AGI = r.AGI,
-                ELU = r.ELU,
-                BCV = r.BCV,
-                CAR = r.CAR,
-                JKM = r.JKM,
-                SPM = r.SPM,
-                SFA = r.SFA,
-                TRK = r.TRK,
-                CTH = r.CTH,
-                CIT = r.CIT,
-                SPC = r.SPC,
-                RTE = r.RTE,
-                RLS = r.RLS,
-                JMP = r.JMP,
-                THP = r.THP,
-                SAC = r.SAC,
-                MAC = r.MAC,
-                DAC = r.DAC,
-                RUN = r.RUN,
-                PAC = r.PAC,
-                RBK = r.RBK,
-                PBK = r.PBK,
-                IBL = r.IBL,
-                TAK = r.TAK,
-                POW = r.POW,
-                BSH = r.BSH,
-                FMV = r.FMV,
-                PMV = r.PMV,
-                MCV = r.MCV,
-                ZCV = r.ZCV,
-                PRS = r.PRS,
-                PRC = r.PRC,
-                PUR = r.PUR
-            });
-            var vm = new PositionViewModel { Rookies = rookieList };
+            var rookieList = _context.Players.Where(r => r.Position == position).ToList();
+  
+            var vm = new PositionViewModel { Rookies = rookieList, PositionTitle = position };
+           
             //Takes the place of -> var vm = new PositionViewModel();
             //-> vm.Rookies = rookies;
-
-
-            //make sure to update the view to use positionviewmodel
             return View(vm);
+
+          //var rookies = new PositionDTO
+          //  {
+          //      PlayerName = r.PlayerName,
+          //      Position = r.Position,
+          //      Age = r.Age,
+          //      Height = r.Height,
+          //      Weight = r.Weight,
+          //      Development = r.Development,
+          //      OVR = r.OVR,
+          //      SPD = r.SPD,
+          //      ACC = r.ACC,
+          //      STR = r.STR,
+          //      AGI = r.AGI,
+          //      ELU = r.ELU,
+          //      BCV = r.BCV,
+          //      CAR = r.CAR,
+          //      JKM = r.JKM,
+          //      SPM = r.SPM,
+          //      SFA = r.SFA,
+          //      TRK = r.TRK,
+          //      CTH = r.CTH,
+          //      CIT = r.CIT,
+          //      SPC = r.SPC,
+          //      RTE = r.RTE,
+          //      RLS = r.RLS,
+          //      JMP = r.JMP,
+          //      THP = r.THP,
+          //      SAC = r.SAC,
+          //      MAC = r.MAC,
+          //      DAC = r.DAC,
+          //      RUN = r.RUN,
+          //      PAC = r.PAC,
+          //      RBK = r.RBK,
+          //      PBK = r.PBK,
+          //      IBL = r.IBL,
+          //      TAK = r.TAK,
+          //      POW = r.POW,
+          //      BSH = r.BSH,
+          //      FMV = r.FMV,
+          //      PMV = r.PMV,
+          //      MCV = r.MCV,
+          //      ZCV = r.ZCV,
+          //      PRS = r.PRS,
+          //      PRC = r.PRC,
+          //      PUR = r.PUR
+          //  });
+      
         }
 
         //you can use this as to populate a vm prop to set the title on the individual position views
