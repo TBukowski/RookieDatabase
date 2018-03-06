@@ -1,5 +1,5 @@
 ﻿@*@model IEnumerable<RookieDatabase.ViewModels.RookieViewModel>*@
-@model RookieDatabase.ViewModels.RookieViewModel
+@model RookieDatabase.ViewModels.PositionViewModel
 @*
     use positionviewmodel instead of rookieviewmodel
     remember that helper method in the controller that I created called GetPageMessage
@@ -11,27 +11,15 @@
 
 @*This type of property is what I was talking about in my comment above. This is pretty much what you need. Just one problem, you're trying to use it here
     and it is not a property on position viewmodel*@
-<h1>@Model.Position</h1>
+<h1>@Model.PositionTitle</h1>
 <h2>POSITION PAGE</h2>
+
 <p>
     <a asp-action="AddPlayer">Add a new rookie</a>
 </p>
-@*
-    @foreach (var rookie in )
-    {
-        <h2>@Model.Position</h2>
-        <h2>@Model.PlayerName</h2>
-    }
 
-    ---------------------------------------------------------------------------------------------------
-        -Line 14 is incorrect and needs an enumerable of position specific rookies
-        -Right now I want to just get the razor working and create the correct list (or whatever)
-        -i can do table on my own
-
-        -This page will consist of a table resembling the roster view in the Madden game and
-        will only hold one position grouping. (eadh position will have its own page)
-        -A title with the position name
-        -A search bar
-        -Player name link to player specific edit
-    ---------------------------------------------------------------------------------------------------
-*@
+@foreach (var r in Model.Rookies)
+{
+    <h2>@r.Position</h2>
+    <h2>@r.PlayerName</h2>
+}
