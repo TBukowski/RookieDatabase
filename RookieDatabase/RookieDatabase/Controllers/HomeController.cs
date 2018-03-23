@@ -4,6 +4,7 @@ using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using RookieDatabase.Data;
 using RookieDatabase.Helpers;
 using RookieDatabase.Models;
@@ -116,6 +117,7 @@ namespace RookieDatabase.Controllers
             return $"Your {pageName.GetDescription()} page";
         }
 
+        //delete this? difference in get post?
         [HttpGet]
         public IActionResult AddPlayer()
         {
@@ -123,7 +125,7 @@ namespace RookieDatabase.Controllers
         }
 
         [HttpPost]
-        public IActionResult AddPlayer(CreateViewModel player)
+        public IActionResult AddPlayer(PlayerAttributeViewModel player)
         {
             if (_context.Players.Any(p => p.PlayerName == player.PlayerName && p.Position == player.Position))
             {
@@ -184,18 +186,87 @@ namespace RookieDatabase.Controllers
 
                 //it's usually a best practice to name your dbsets plural. Note: I mean dbset, not model. The model should be named Player, dbset: Players
                 _context.Players.Add(toCreate);
-                _context.Players.Add(toCreate);
                 _context.SaveChanges();
 
 
-                //idk why you used redirecttoaction, if there's a valid reason let me know.
-                //imo, this line isn't even needed
                 //redirecttoaction causes you to lose any modelstate validation errors. you just need to return the view
-                return RedirectToAction("AddPlayer");
+                return View();
                 //return Json(toCreate);
             }
-            //you do not need to specify the name of the view since your action is now named properly. return View();
-            return View("AddPlayer");
+            return View();
+        }
+
+        public IActionResult Edit(int? id, PlayerAttributeViewModel rookie)
+        {
+            if (id == null)
+            {
+                return NotFound();
+            }
+
+            var toEdit = new Player
+            {
+                PlayerName = rookie.PlayerName,
+                Position = rookie.Position,
+                Age = rookie.Age,
+                Height = rookie.Height,
+                Weight = rookie.Weight,
+                Development = rookie.Development,
+                OVR = rookie.OVR,
+                SPD = rookie.SPD,
+                ACC = rookie.ACC,
+                STR = rookie.STR,
+                AGI = rookie.AGI,
+                ELU = rookie.ELU,
+                BCV = rookie.BCV,
+                CAR = rookie.CAR,
+                JKM = rookie.JKM,
+                SPM = rookie.SPM,
+                SFA = rookie.SFA,
+                TRK = rookie.TRK,
+                CTH = rookie.CTH,
+                CIT = rookie.CIT,
+                SPC = rookie.SPC,
+                RTE = rookie.RTE,
+                RLS = rookie.RLS,
+                JMP = rookie.JMP,
+                THP = rookie.THP,
+                SAC = rookie.SAC,
+                MAC = rookie.MAC,
+                DAC = rookie.DAC,
+                RUN = rookie.RUN,
+                PAC = rookie.PAC,
+                RBK = rookie.RBK,
+                PBK = rookie.PBK,
+                IBL = rookie.IBL,
+                TAK = rookie.TAK,
+                POW = rookie.POW,
+                BSH = rookie.BSH,
+                FMV = rookie.FMV,
+                PMV = rookie.PMV,
+                MCV = rookie.MCV,
+                ZCV = rookie.ZCV,
+                PRS = rookie.PRS,
+                PRC = rookie.PRC,
+                PUR = rookie.PUR
+            };
+
+            var player = _context.Players.SingleOrDefault(r => r.ID == id);
+            if (player == null)
+            {
+                return NotFound();
+            }
+            return View(player);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public IActionResult Edit(int id, RookieViewModel player)
+        {
+            //where context where id == id -see position action
+                    _context.Update(player);
+                    _context.SaveChanges();
+
+            return View();
         }
 
         public IActionResult Error()

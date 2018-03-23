@@ -18,8 +18,111 @@
     <a asp-action="AddPlayer">Add a new rookie</a>
 </p>
 
-@foreach (var r in Model.Rookies)
-{
-    <h2>@r.Position</h2>
-    <h2>@r.PlayerName</h2>
+<h2>GET RID OF HARD CODED COLUMN NAMES</h2>
+
+<table>
+    <thead>
+        <tr>
+            @*<th>
+                @Html.DisplayNameFor(model => model.PlayerName)
+            </th>*@
+            <th>Name</th>
+            <th>Position</th>
+            <th>Age</th>
+            <th>Height</th>
+            <th>Weight</th>
+            <th>Development</th>
+            <th>OVR</th>
+            <th>SPD</th>
+            <th>ACC</th>
+            <th>STR</th>
+            <th>AGI</th>
+            <th>ELU</th>
+            <th>BCV</th>
+            <th>CAR</th>
+            <th>JKM</th>
+            <th>SPM</th>
+            <th>SFA</th>
+            <th>TRK</th>
+            <th>CTH</th>
+            <th>CIT</th>
+            <th>SPC</th>
+            <th>RTE</th>
+            <th>RLS</th>
+            <th>JMP</th>
+            <th>THP</th>
+            <th>SAC</th>
+            <th>MAC</th>
+            <th>DAC</th>
+            <th>RUN</th>
+            <th>PAC</th>
+            <th>RBK</th>
+            <th>PBK</th>
+            <th>IBL</th>
+            <th>TAK</th>
+            <th>POW</th>
+            <th>BSH</th>
+            <th>FMV</th>
+            <th>PMV</th>
+            <th>MCV</th>
+            <th>ZCV</th>
+            <th>PRS</th>
+            <th>PRC</th>
+            <th>PUR</th>
+        </tr>
+    </thead>
+    <tbody>
+        @*<td>
+            @Html.DisplayFor(model => model.PlayerName)
+        </td>*@
+        @foreach (var r in Model.Rookies)
+    {
+        <tr>
+
+            <td><a asp-action="Edit">@r.PlayerName</a></td>
+            <td>@r.Position</td>
+            <td>@r.Age</td>
+            <td>@r.Height</td>
+            <td>@r.Weight</td>
+            <td>@r.Development</td>
+            <td>@r.OVR</td>
+            <td>@r.SPD</td>
+            <td>@r.ACC</td>
+            <td>@r.STR</td>
+            <td>@r.AGI</td>
+            <td>@r.ELU</td>
+            <td>@r.BCV</td>
+            <td>@r.CAR</td>
+            <td>@r.JKM</td>
+            <td>@r.SPM</td>
+            <td>@r.SFA</td>
+            <td>@r.TRK</td>
+            <td>@r.CTH</td>
+            <td>@r.CIT</td>
+            <td>@r.SPC</td>
+            <td>@r.RTE</td>
+            <td>@r.RLS</td>
+            <td>@r.JMP</td>
+            <td>@r.THP</td>
+            <td>@r.SAC</td>
+            <td>@r.MAC</td>
+            <td>@r.DAC</td>
+            <td>@r.RUN</td>
+            <td>@r.PAC</td>
+            <td>@r.RBK</td>
+            <td>@r.PBK</td>
+            <td>@r.IBL</td>
+            <td>@r.TAK</td>
+            <td>@r.POW</td>
+            <td>@r.BSH</td>
+            <td>@r.FMV</td>
+            <td>@r.PMV</td>
+            <td>@r.MCV</td>
+            <td>@r.ZCV</td>
+            <td>@r.PRS</td>
+            <td>@r.PRC</td>
+            <td>@r.PUR</td>
+        </tr>
 }
+    </tbody>
+</table>

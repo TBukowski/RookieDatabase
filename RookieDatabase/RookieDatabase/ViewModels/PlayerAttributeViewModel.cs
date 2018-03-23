@@ -7,7 +7,7 @@ using RookieDatabase.Models;
 
 namespace RookieDatabase.ViewModels
 {
-    public class CreateViewModel
+    public class PlayerAttributeViewModel
     {
         [Key]
         public int ID { get; set; }

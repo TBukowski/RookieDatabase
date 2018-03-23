@@ -14,5 +14,6 @@ namespace RookieDatabase.Data
             //}
         }
         public DbSet<Player> Players { get; set; }
+        public DbSet<RookieDatabase.ViewModels.PlayerAttributeViewModel> CreateViewModel { get; set; }
     }
 }
