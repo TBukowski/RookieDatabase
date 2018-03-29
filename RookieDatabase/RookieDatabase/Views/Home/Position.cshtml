@@ -1,16 +1,10 @@
 ﻿@*@model IEnumerable<RookieDatabase.ViewModels.RookieViewModel>*@
 @model RookieDatabase.ViewModels.PositionViewModel
-@*
-    use positionviewmodel instead of rookieviewmodel
-    remember that helper method in the controller that I created called GetPageMessage
-    use that to set a new property on the view model which you can use to the set title.
-    the view will not know what position here...it will need to look into the view model*@
+
 @{
     ViewData["Title"] = "Position";
 }
 
-@*This type of property is what I was talking about in my comment above. This is pretty much what you need. Just one problem, you're trying to use it here
-    and it is not a property on position viewmodel*@
 <h1>@Model.PositionTitle</h1>
 <h2>POSITION PAGE</h2>
 
@@ -23,10 +17,137 @@
 <table>
     <thead>
         <tr>
-            @*<th>
+            <th>
                 @Html.DisplayNameFor(model => model.PlayerName)
-            </th>*@
-            <th>Name</th>
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Position)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Age)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Height)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Weight)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Development)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.OVR)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.SPD)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ACC)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.STR)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.AGI)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ELU)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.BCV)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CAR)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.JKM)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.SPM)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.SFA)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.TRK)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CTH)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CIT)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.SPC)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.RTE)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.RLS)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.JMP)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.THP)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.SAC)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.MAC)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.DAC)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.RUN)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.PAC)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.RBK)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.PBK)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.IBL)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.TAK)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.POW)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.BSH)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.FMV)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.PMV)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.MCV)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ZCV)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.PRS)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.PRC)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.PUR)
+            </th>
+
+            @*<th>Name</th>
             <th>Position</th>
             <th>Age</th>
             <th>Height</th>
@@ -68,7 +189,7 @@
             <th>ZCV</th>
             <th>PRS</th>
             <th>PRC</th>
-            <th>PUR</th>
+            <th>PUR</th>*@
         </tr>
     </thead>
     <tbody>
