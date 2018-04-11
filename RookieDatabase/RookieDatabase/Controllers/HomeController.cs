@@ -203,59 +203,60 @@ namespace RookieDatabase.Controllers
                 return NotFound();
             }
 
-            var toEdit = new Player
-            {
-                PlayerName = rookie.PlayerName,
-                Position = rookie.Position,
-                Age = rookie.Age,
-                Height = rookie.Height,
-                Weight = rookie.Weight,
-                Development = rookie.Development,
-                OVR = rookie.OVR,
-                SPD = rookie.SPD,
-                ACC = rookie.ACC,
-                STR = rookie.STR,
-                AGI = rookie.AGI,
-                ELU = rookie.ELU,
-                BCV = rookie.BCV,
-                CAR = rookie.CAR,
-                JKM = rookie.JKM,
-                SPM = rookie.SPM,
-                SFA = rookie.SFA,
-                TRK = rookie.TRK,
-                CTH = rookie.CTH,
-                CIT = rookie.CIT,
-                SPC = rookie.SPC,
-                RTE = rookie.RTE,
-                RLS = rookie.RLS,
-                JMP = rookie.JMP,
-                THP = rookie.THP,
-                SAC = rookie.SAC,
-                MAC = rookie.MAC,
-                DAC = rookie.DAC,
-                RUN = rookie.RUN,
-                PAC = rookie.PAC,
-                RBK = rookie.RBK,
-                PBK = rookie.PBK,
-                IBL = rookie.IBL,
-                TAK = rookie.TAK,
-                POW = rookie.POW,
-                BSH = rookie.BSH,
-                FMV = rookie.FMV,
-                PMV = rookie.PMV,
-                MCV = rookie.MCV,
-                ZCV = rookie.ZCV,
-                PRS = rookie.PRS,
-                PRC = rookie.PRC,
-                PUR = rookie.PUR
-            };
+            var toEdit = _context.Players.SingleOrDefault(r => r.ID == id);
+            var editRookie = new PlayerAttributeViewModel
+                             {
+                                 PlayerName = rookie.PlayerName,
+                                 Position = rookie.Position,
+                                 Age = rookie.Age,
+                                 Height = rookie.Height,
+                                 Weight = rookie.Weight,
+                                 Development = rookie.Development,
+                                 OVR = rookie.OVR,
+                                 SPD = rookie.SPD,
+                                 ACC = rookie.ACC,
+                                 STR = rookie.STR,
+                                 AGI = rookie.AGI,
+                                 ELU = rookie.ELU,
+                                 BCV = rookie.BCV,
+                                 CAR = rookie.CAR,
+                                 JKM = rookie.JKM,
+                                 SPM = rookie.SPM,
+                                 SFA = rookie.SFA,
+                                 TRK = rookie.TRK,
+                                 CTH = rookie.CTH,
+                                 CIT = rookie.CIT,
+                                 SPC = rookie.SPC,
+                                 RTE = rookie.RTE,
+                                 RLS = rookie.RLS,
+                                 JMP = rookie.JMP,
+                                 THP = rookie.THP,
+                                 SAC = rookie.SAC,
+                                 MAC = rookie.MAC,
+                                 DAC = rookie.DAC,
+                                 RUN = rookie.RUN,
+                                 PAC = rookie.PAC,
+                                 RBK = rookie.RBK,
+                                 PBK = rookie.PBK,
+                                 IBL = rookie.IBL,
+                                 TAK = rookie.TAK,
+                                 POW = rookie.POW,
+                                 BSH = rookie.BSH,
+                                 FMV = rookie.FMV,
+                                 PMV = rookie.PMV,
+                                 MCV = rookie.MCV,
+                                 ZCV = rookie.ZCV,
+                                 PRS = rookie.PRS,
+                                 PRC = rookie.PRC,
+                                 PUR = rookie.PUR
+                             };
 
-            var player = _context.Players.SingleOrDefault(r => r.ID == id);
-            if (player == null)
-            {
-                return NotFound();
-            }
-            return View(player);
+            //var player = _context.Players.SingleOrDefault(r => r.ID == id);
+            //if (player == null)
+            //{
+            //    return NotFound();
+            //}
+            return View(editRookie);
         }
 
         [HttpPost]
