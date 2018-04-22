@@ -196,72 +196,64 @@ namespace RookieDatabase.Controllers
             return View();
         }
 
-        public IActionResult Edit(int? id, PlayerAttributeViewModel rookie)
+        public IActionResult Edit(int id)
         {
-            if (id == null)
-            {
-                return NotFound();
-            }
 
             var toEdit = _context.Players.SingleOrDefault(r => r.ID == id);
+            //null reference exception
             var editRookie = new PlayerAttributeViewModel
-                             {
-                                 PlayerName = rookie.PlayerName,
-                                 Position = rookie.Position,
-                                 Age = rookie.Age,
-                                 Height = rookie.Height,
-                                 Weight = rookie.Weight,
-                                 Development = rookie.Development,
-                                 OVR = rookie.OVR,
-                                 SPD = rookie.SPD,
-                                 ACC = rookie.ACC,
-                                 STR = rookie.STR,
-                                 AGI = rookie.AGI,
-                                 ELU = rookie.ELU,
-                                 BCV = rookie.BCV,
-                                 CAR = rookie.CAR,
-                                 JKM = rookie.JKM,
-                                 SPM = rookie.SPM,
-                                 SFA = rookie.SFA,
-                                 TRK = rookie.TRK,
-                                 CTH = rookie.CTH,
-                                 CIT = rookie.CIT,
-                                 SPC = rookie.SPC,
-                                 RTE = rookie.RTE,
-                                 RLS = rookie.RLS,
-                                 JMP = rookie.JMP,
-                                 THP = rookie.THP,
-                                 SAC = rookie.SAC,
-                                 MAC = rookie.MAC,
-                                 DAC = rookie.DAC,
-                                 RUN = rookie.RUN,
-                                 PAC = rookie.PAC,
-                                 RBK = rookie.RBK,
-                                 PBK = rookie.PBK,
-                                 IBL = rookie.IBL,
-                                 TAK = rookie.TAK,
-                                 POW = rookie.POW,
-                                 BSH = rookie.BSH,
-                                 FMV = rookie.FMV,
-                                 PMV = rookie.PMV,
-                                 MCV = rookie.MCV,
-                                 ZCV = rookie.ZCV,
-                                 PRS = rookie.PRS,
-                                 PRC = rookie.PRC,
-                                 PUR = rookie.PUR
-                             };
+            {
+                PlayerName = toEdit.PlayerName,
+                Position = toEdit.Position,
+                Age = toEdit.Age,
+                Height = toEdit.Height,
+                Weight = toEdit.Weight,
+                Development = toEdit.Development,
+                OVR = toEdit.OVR,
+                SPD = toEdit.SPD,
+                ACC = toEdit.ACC,
+                STR = toEdit.STR,
+                AGI = toEdit.AGI,
+                ELU = toEdit.ELU,
+                BCV = toEdit.BCV,
+                CAR = toEdit.CAR,
+                JKM = toEdit.JKM,
+                SPM = toEdit.SPM,
+                SFA = toEdit.SFA,
+                TRK = toEdit.TRK,
+                CTH = toEdit.CTH,
+                CIT = toEdit.CIT,
+                SPC = toEdit.SPC,
+                RTE = toEdit.RTE,
+                RLS = toEdit.RLS,
+                JMP = toEdit.JMP,
+                THP = toEdit.THP,
+                SAC = toEdit.SAC,
+                MAC = toEdit.MAC,
+                DAC = toEdit.DAC,
+                RUN = toEdit.RUN,
+                PAC = toEdit.PAC,
+                RBK = toEdit.RBK,
+                PBK = toEdit.PBK,
+                IBL = toEdit.IBL,
+                TAK = toEdit.TAK,
+                POW = toEdit.POW,
+                BSH = toEdit.BSH,
+                FMV = toEdit.FMV,
+                PMV = toEdit.PMV,
+                MCV = toEdit.MCV,
+                ZCV = toEdit.ZCV,
+                PRS = toEdit.PRS,
+                PRC = toEdit.PRC,
+                PUR = toEdit.PUR
+            };
 
-            //var player = _context.Players.SingleOrDefault(r => r.ID == id);
-            //if (player == null)
-            //{
-            //    return NotFound();
-            //}
             return View(editRookie);
         }
 
-        [HttpPost]
+        [HttpPut]
         [ValidateAntiForgeryToken]
-        public IActionResult Edit(int id, RookieViewModel player)
+        public IActionResult Edit(RookieViewModel player)
         {
             //where context where id == id -see position action
                     _context.Update(player);
