@@ -3,11 +3,11 @@
     ViewData["Title"] = "Home Page";
 }
 
-<h1>ROOKIE DATABASE</h1>
+<h2>CHOOSE A POSITION</h2>
 
 @foreach (var rookie in Model.Positions)
 {
-    <a asp-action="Position"
+    <a class="btn btn-primary" role="button"asp-action="Position"
        asp-route-position="@rookie">@rookie</a>
 }
 

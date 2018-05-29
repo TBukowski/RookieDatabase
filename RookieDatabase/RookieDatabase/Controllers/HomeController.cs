@@ -58,6 +58,7 @@ namespace RookieDatabase.Controllers
             var rookieList = _context.Players.Where(r => r.Position == position)
                                             .Select(r => new PositionDTO
                                             {
+                                                ID = r.ID,
                                                 PlayerName = r.PlayerName,
                                                 Position = r.Position,
                                                 Age = r.Age,
@@ -190,7 +191,7 @@ namespace RookieDatabase.Controllers
 
 
                 //redirecttoaction causes you to lose any modelstate validation errors. you just need to return the view
-                return View();
+                return RedirectToAction("Position", new {position = player.Position });
                 //return Json(toCreate);
             }
             return View();
@@ -198,9 +199,7 @@ namespace RookieDatabase.Controllers
 
         public IActionResult Edit(int id)
         {
-
-            var toEdit = _context.Players.SingleOrDefault(r => r.ID == id);
-            //null reference exception
+            var toEdit = _context.Players.Single(r => r.ID == id);
             var editRookie = new PlayerAttributeViewModel
             {
                 PlayerName = toEdit.PlayerName,
@@ -251,16 +250,70 @@ namespace RookieDatabase.Controllers
             return View(editRookie);
         }
 
-        [HttpPut]
+        [HttpPost]
         [ValidateAntiForgeryToken]
         public IActionResult Edit(RookieViewModel player)
         {
-            //where context where id == id -see position action
-                    _context.Update(player);
-                    _context.SaveChanges();
+            var toEdit = _context.Players.Single(r => r.ID == player.ID);
 
-            return View();
+        //new PlayerAttributeViewModel
+
+                toEdit.PlayerName = player.PlayerName;
+                toEdit.Position = player.Position;
+                toEdit.Age = player.Age;
+                toEdit.Height = player.Height;
+                toEdit.Weight = player.Weight;
+                toEdit.Development = player.Development;
+                toEdit.OVR = player.OVR;
+                toEdit.SPD = player.SPD;
+                toEdit.ACC = player.ACC;
+                toEdit.STR = player.STR;
+                toEdit.AGI = player.AGI;
+                toEdit.ELU = player.ELU;
+                toEdit.BCV = player.BCV;
+                toEdit.CAR = player.CAR;
+                toEdit.JKM = player.JKM;
+                toEdit.SPM = player.SPM;
+                toEdit.SFA = player.SFA;
+                toEdit.TRK = player.TRK;
+                toEdit.CTH = player.CTH;
+                toEdit.CIT = player.CIT;
+                toEdit.SPC = player.SPC;
+                toEdit.RTE = player.RTE;
+                toEdit.RLS = player.RLS;
+                toEdit.JMP = player.JMP;
+                toEdit.THP = player.THP;
+                toEdit.SAC = player.SAC;
+                toEdit.MAC = player.MAC;
+                toEdit.DAC = player.DAC;
+                toEdit.RUN = player.RUN;
+                toEdit.PAC = player.PAC;
+                toEdit.RBK = player.RBK;
+                toEdit.PBK = player.PBK;
+                toEdit.IBL = player.IBL;
+                toEdit.TAK = player.TAK;
+                toEdit.POW = player.POW;
+                toEdit.BSH = player.BSH;
+                toEdit.FMV = player.FMV;
+                toEdit.PMV = player.PMV;
+                toEdit.MCV = player.MCV;
+                toEdit.ZCV = player.ZCV;
+                toEdit.PRS = player.PRS;
+                toEdit.PRC = player.PRC;
+                toEdit.PUR = player.PUR;
+
+
+            _context.SaveChanges();
+
+            return RedirectToAction("Position", new { position = player.Position });
         }
+
+        //public Action search
+        /*
+         * text box ui -- create search action that will accept sing param thats a string (search text), in that action connect to db _cont.players.where( p => p.playername contains searchtext 
+         * contains so it doesnt have to be exact compared == .....Select(r => new PlayAttVM {Map stuff}... look to PositionDTO ienumerable
+         * POST return view or redirectotaction, one or two action 
+         */
 
         public IActionResult Error()
         {

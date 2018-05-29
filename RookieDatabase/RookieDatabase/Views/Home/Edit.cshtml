@@ -11,13 +11,13 @@
 
 <h4>Edit Player</h4>
 <div>
-    <a asp-action="Position">Back to Player List</a>
+    <a asp-action="Position" asp-route-position="@Model.Position">Back to Player List</a>
     @* figure out how to go back to specific position. currently goes back to blank position page bc one was not clicked *@
 </div>
 <hr />
 <div class="row">
     <div class="col-md-4">
-        <form asp-action="Edit">
+        <form asp-action="Edit" asp-controller="Home" method="post">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <input type="hidden" asp-for="ID" />
             <div class="form-group">

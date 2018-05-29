@@ -12,6 +12,7 @@ namespace RookieDatabase.ViewModels
         [Key]
         public int ID { get; set; }
         [Required]
+        [Display(Name = "Player Name")]
         public string PlayerName { get; set; }
         [Required]
         public string Position { get; set; }

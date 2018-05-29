@@ -33,3 +33,13 @@
         display: none;
     }
 }
+
+/*---------USER CREATED CODE BELOW, CPU GENERATED CODE ABOVE------------*/
+.container {
+    display: flex;
+        flex-direction: row;
+}
+
+.table_column{
+    flex:auto;
+}
