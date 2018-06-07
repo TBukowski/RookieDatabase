@@ -42,6 +42,20 @@
 
 .table_column {
     flex: auto;
-    display: flex;
+    display: inline-flex;
     flex-direction: row;
+    padding: 2%;
+}
+
+.form-group {
+    padding: 13%;
+}
+
+body {
+    background-image: url(/images/background.png);
+    background-color: #0e9244;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-position: center;
+    background-size: contain;
 }
